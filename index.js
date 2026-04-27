@@ -66,6 +66,16 @@ app.get('/auth/github', (req, res) => {
   res.redirect(`${API}/auth/github`);
 });
 
+// OAuth callback — backend redirects here with tokens in query params
+app.get('/auth/callback', (req, res) => {
+  const { at, rt } = req.query;
+  if (!at || !rt) return res.redirect('/login?error=auth_failed');
+  const cookieOpts = { httpOnly: true, secure: true, sameSite: 'lax' };
+  res.cookie('access_token',  at, { ...cookieOpts, maxAge: 3 * 60 * 1000 });
+  res.cookie('refresh_token', rt, { ...cookieOpts, maxAge: 5 * 60 * 1000 });
+  res.redirect('/dashboard');
+});
+
 // OAuth callback — backend sets cookies then redirects here
 app.get('/dashboard', requireLogin, async (req, res) => {
   try {
