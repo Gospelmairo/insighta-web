@@ -76,16 +76,17 @@ app.get('/auth/callback', (req, res) => {
   res.redirect('/dashboard');
 });
 
-// OAuth callback — backend sets cookies then redirects here
 app.get('/dashboard', requireLogin, async (req, res) => {
   try {
-    const [profilesRes] = await Promise.all([
+    const [profilesRes, meRes] = await Promise.all([
       apiCall(req, 'get', '/api/profiles', { limit: 1 }),
+      apiCall(req, 'get', '/auth/me'),
     ]);
     const total = profilesRes.data.total;
-    res.render('dashboard', { total, user: req.cookies });
+    const user  = meRes.data.data;
+    res.render('dashboard', { total, user });
   } catch {
-    res.render('dashboard', { total: 0, user: req.cookies });
+    res.render('dashboard', { total: 0, user: null });
   }
 });
 
