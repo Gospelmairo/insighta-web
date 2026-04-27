@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Dashboard — Insighta Labs+</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
+nav{background:#1e293b;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155}
+.brand{color:#38bdf8;font-weight:700;font-size:1.1rem}.nav-links a{color:#94a3b8;text-decoration:none;margin-left:1.5rem;font-size:.9rem}.nav-links a:hover{color:#38bdf8}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+h1{font-size:1.5rem;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.card{background:#1e293b;border-radius:.75rem;padding:1.5rem;border:1px solid #334155;text-align:center}
+.num{font-size:2.5rem;font-weight:700;color:#38bdf8}.label{color:#94a3b8;font-size:.875rem;margin-top:.25rem}
+.actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.6rem 1.25rem;border-radius:.5rem;text-decoration:none;font-size:.9rem;font-weight:600}
+.btn-primary{background:#38bdf8;color:#0f172a}.btn-secondary{background:#334155;color:#e2e8f0}
+</style>
+</head>
+<body>
+<nav>
+  <span class="brand">Insighta Labs+</span>
+  <div class="nav-links">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/profiles">Profiles</a>
+    <a href="/search">Search</a>
+    <a href="/account">Account</a>
+    <form method="POST" action="/logout" style="display:inline"><button style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.9rem;margin-left:1.5rem">Logout</button></form>
+  </div>
+</nav>
+<div class="container">
+  <h1>Dashboard</h1>
+  <div class="grid">
+    <div class="card"><div class="num"><%= total %></div><div class="label">Total Profiles</div></div>
+    <div class="card"><div class="num">2</div><div class="label">User Roles</div></div>
+    <div class="card"><div class="num">v1</div><div class="label">API Version</div></div>
+  </div>
+  <div class="actions">
+    <a href="/profiles" class="btn btn-primary">Browse Profiles</a>
+    <a href="/search" class="btn btn-secondary">Natural Language Search</a>
+  </div>
+</div>
+</body>
+</html>
