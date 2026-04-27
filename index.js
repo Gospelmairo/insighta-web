@@ -3,7 +3,7 @@
 const express      = require('express');
 const cookieParser = require('cookie-parser');
 const axios        = require('axios');
-const { v4: uuidv4 } = require('uuid');
+const { v7: uuidv4 } = require('uuid');
 const path         = require('path');
 
 const app      = express();
